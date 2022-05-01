@@ -23,7 +23,7 @@ export function main(): void {
 }
 
 function registerCallbacks(mod: Mod) {
-  postUpdateInit();
+  postUpdateInit(mod);
   // TODO: Add init functions for new callbacks here
 }
 ```
@@ -68,6 +68,7 @@ function main() {
 Each item can have its own dedicated file in an "items" subdirectory.
 
 ```ts
+import { getEntities, getPlayers, getRandomInt } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../types/CollectibleTypeCustom";
 
 // ModCallbacks.MC_POST_UPDATE (1)
@@ -77,7 +78,7 @@ export function greenCandlePostUpdate(): void {
 
 export function checkApplyGreenCandleEffect(): void {
   for (const player of getPlayers()) {
-    if (player.HasCollectible(GREEN_CANDLE_COLLECTIBLE_TYPE)) {
+    if (player.HasCollectible(CollectibleTypeCustom.COLLECTIBLE_GREEN_CANDLE)) {
       applyGreenCandleEffect(player);
     }
   }
